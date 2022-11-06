@@ -45,7 +45,8 @@
         name: 'FormularioVue',
         data() {
             return {
-                tempoEmSegundos: 0
+                tempoEmSegundos: 0,
+                cronometro: 0
             }
         },
         computed: {
@@ -56,14 +57,12 @@
         methods: {
             iniciar() {
                 //Começar a contagem
-                setInterval(() => { 
+                this.cronometro = setInterval(() => { 
                     this.tempoEmSegundos++
-                    console.log('Incrementando o contador', this.tempoEmSegundos); 
                 }, 1000);
-                console.log('Iniciando'); 
             },
             finalizar() {
-                console.log('Finalizando');
+                clearInterval(this.cronometro);
             }
         }
     });

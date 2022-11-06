@@ -5,6 +5,7 @@
     </div>
     <div class="column is-three-quarter">
       <FormularioVue />
+      <!-- Lista de tarefas -->
     </div>
   </main>
 </template>
