@@ -4,7 +4,9 @@
             <img src="../assets/logo.png" alt="Logo Alura Tracker">
         </h1>
         <button class="button" @click="alterarTema">
-            {{ textoBotao }}
+            <i :class="textoBotao.icon"></i>
+            <span class="textButton">{{ textoBotao.text }}</span>
+
         </button>
     </header>
 </template>
@@ -23,9 +25,10 @@ export default defineComponent({
     computed: {
         textoBotao() {
             if(!this.modoEscuroAtivo) {
-                return 'Ativar modo escuro'
+                return {text: 'Modo escuro',
+                        icon: 'fa-regular fa-moon'}
             } else {
-                return 'Desativar modo escuro'
+                return {text: 'Modo claro', icon: 'fa-regular fa-sun'}
             }
         }
     },
@@ -45,6 +48,11 @@ header {
     width: 100%;
     height: 100vh;
     text-align: center;
+}
+
+.textButton {
+    margin: 0 5px;
+    font-weight: 600;
 }
 
 @media only screen and (max-width: 768px) {
