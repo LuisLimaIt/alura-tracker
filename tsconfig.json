@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/roteador/index.js"  ],
   "exclude": [
     "node_modules"
   ]
