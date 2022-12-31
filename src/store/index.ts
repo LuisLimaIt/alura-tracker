@@ -38,7 +38,7 @@ export const store = createStore<Estado>({
 
             setTimeout(() => {
                 state.notificacoes = state.notificacoes.filter(notificacao => notificacao.id != novaNotificacao.id)
-            }, 3000)
+            }, 5000)
         }
     }
 });

@@ -24,8 +24,9 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import TemporizadorVue from './Temporizador.vue';
-import { useStore } from 'vuex';
-import { key } from '@/store';
+import { useStore } from '@/store';
+import { NOTIFICAR } from '@/store/tipo-mutacoes';
+import { TipoNotificacao } from '@/interfaces/INotificacao';
 
 
 export default defineComponent({
@@ -42,6 +43,16 @@ export default defineComponent({
     },
     methods: {
         finalizarTarefa(tempoDecorrido: number): void {
+
+            if (!this.projetos.find((p) => p.id == this.idProjeto)) {
+                this.store.commit(NOTIFICAR, {
+                    titulo: 'A tarefa não foi salva!',
+                    texto: "Selecione um projeto antes de finalizar!",
+                    tipo: TipoNotificacao.FALHA,
+                }); 
+                return; 
+            }
+
             this.$emit('aoSalvarTarefa', {
                 duracaoEmSegundos: tempoDecorrido,
                 descricao: this.descricao,
@@ -51,9 +62,10 @@ export default defineComponent({
         }
     },
     setup() {
-        const store = useStore(key)
+        const store = useStore()
         return {
-            projetos: computed(() => store.state.projetos)
+            projetos: computed(() => store.state.projetos),
+            store
         }
     }
 });
